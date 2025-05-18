@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Nix
-        uses: nixbuild/nix-quick-install-action@v30
+        uses: nixbuild/nix-quick-install-action@5bb6a3b3abe66fd09bbf250dce8ada94f856a703 # v30
       - name: Check out repository code
-        uses: actions/checkout@v4
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - name: Restore nix store cache
         id: restore-cache
-        uses: nix-community/cache-nix-action/restore@v6
+        uses: nix-community/cache-nix-action/restore@135667ec418502fa5a3598af6fb9eb733888ce6a # v6
         with:
           primary-key: "cache-${{ hashFiles('flake.lock') }}"
           restore-prefixes-first-match: "cache-"
@@ -24,6 +24,6 @@ jobs:
       - name: Run flake check
         run: nix flake check
       - name: Save cache
-        uses: nix-community/cache-nix-action/save@v6
+        uses: nix-community/cache-nix-action/save@135667ec418502fa5a3598af6fb9eb733888ce6a # v6
         with:
           primary-key: ${{ steps.restore-cache.outputs.primary-key }}
