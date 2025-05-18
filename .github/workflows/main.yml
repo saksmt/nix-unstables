@@ -19,6 +19,8 @@ jobs:
         with:
           primary-key: "cache-${{ hashFiles('flake.lock') }}"
           restore-prefixes-first-match: "cache-"
+      - name: Check formatting
+        run: find -type f -name \*.nix | xargs nix run nixpkgs#nixfmt-rfc-style -- -c
       - name: Run flake check
         run: nix flake check
       - name: Save cache
