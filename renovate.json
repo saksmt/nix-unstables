@@ -1,0 +1,19 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "helpers:pinGitHubActionDigests",
+    ":disableDependencyDashboard"
+  ],
+  "nix": {
+    "enabled": true
+  },
+  "lockFileMaintenance": {
+    "enabled": true,
+    "extends": "schedule:weekly"
+  },
+  "automerge": true,
+  "ignoreTests": false,
+  "automergeType": "pr",
+  "automergeStrategy": "rebase"
+}

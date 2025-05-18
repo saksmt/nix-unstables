@@ -1,0 +1,27 @@
+name: CI
+run-name: CI for ${{ github.ref_name }}
+on:
+  pull_request: { branches: [ master ] }
+  push:
+    branches: [ master ]
+    tags: [ .* ]
+jobs:
+  Run-Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install Nix
+        uses: nixbuild/nix-quick-install-action@v30
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Restore nix store cache
+        id: restore-cache
+        uses: nix-community/cache-nix-action/restore@v6
+        with:
+          primary-key: "cache-${{ hashFiles('flake.lock') }}"
+          restore-prefixes-first-match: "cache-"
+      - name: Run flake check
+        run: nix flake check
+      - name: Save cache
+        uses: nix-community/cache-nix-action/save@v6
+        with:
+          primary-key: ${{ steps.restore-cache.outputs.primary-key }}
