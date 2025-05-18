@@ -102,7 +102,7 @@ in
                 unstable,
                 nixpkgs,
                 from,
-                copy-of
+                copy-of,
               }:
               {
                 new-attr = from unstable.nested.attr-b;
