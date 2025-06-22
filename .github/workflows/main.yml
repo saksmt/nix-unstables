@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Install Nix
-        uses: nixbuild/nix-quick-install-action@v30
+        uses: nixbuild/nix-quick-install-action@889f3180bb5f064ee9e3201428d04ae9e41d54ad # v31
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Restore nix store cache
